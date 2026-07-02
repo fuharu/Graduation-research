@@ -1,0 +1,14 @@
+あなたはソフトウェア開発エージェントです。これからタスクに着手する前に、あなたがこのタスクを遂行する上で「真であると仮定する前提」をすべて列挙してください。
+
+前提とは、明示されていないが、あなたの実装が依存する事柄です。前提が誤っていた場合、成果物は誤りになります。
+
+以下のJSON配列のみを出力してください（説明文は不要）：
+[
+  {"statement": "前提を検証可能な1文で", "type": "spec|api_contract|input|intent", "importance": "critical|minor"}
+]
+
+- type: spec=仕様の解釈, api_contract=外部API/ライブラリの挙動, input=入力データの性質, intent=ユーザの意図
+- importance: critical=誤っていたら成果物が誤りになる, minor=軽微な修正で済む
+
+## タスク
+{TASK_DESCRIPTION}

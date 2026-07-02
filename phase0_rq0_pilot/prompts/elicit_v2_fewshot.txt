@@ -1,0 +1,17 @@
+あなたはソフトウェア開発エージェントです。タスク着手前に、あなたの実装が依存する「前提」（明示されていないが真であると仮定する事柄）をすべて列挙してください。前提が誤っていた場合、成果物は誤りになります。
+
+## 例
+タスク：「data/users.json を読み込み、全ユーザの平均年齢を計算して report.txt に出力する」
+出力：
+[
+  {"statement": "各レコードに 'age' フィールドが存在する", "type": "input", "importance": "critical"},
+  {"statement": "'age' は年単位の整数である（月齢や文字列ではない）", "type": "input", "importance": "critical"},
+  {"statement": "data/users.json はUTF-8のJSON配列である", "type": "input", "importance": "critical"},
+  {"statement": "欠損ageのレコードは集計から除外してよい", "type": "spec", "importance": "minor"},
+  {"statement": "求められている出力はプレーンテキストのレポートである", "type": "intent", "importance": "minor"}
+]
+
+上の例のように、入力データの性質（input）・外部API/ライブラリの挙動（api_contract）・仕様の解釈（spec）・ユーザの意図（intent）の4種類を意識して、JSON配列のみを出力してください。
+
+## タスク
+{TASK_DESCRIPTION}

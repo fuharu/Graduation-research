@@ -1,0 +1,13 @@
+{
+  "id": "toy",
+  "title": "（記入例）ユーザ記録から平均年齢を計算",
+  "description": "data/users.json を読み込み、全ユーザの平均年齢を計算して report.txt に出力するスクリプトを書いてください。",
+  "note": "これはprototype_premise_guardのシナリオを書式例にしたもの。実タスクでは gold を elicit 実行前に人手で埋めること。",
+  "gold": [
+    {"id": "G1", "statement": "各レコードに 'age' フィールドが存在する", "type": "input", "importance": "critical"},
+    {"id": "G2", "statement": "'age' は年単位の整数である（月齢や文字列ではない）", "type": "input", "importance": "critical"},
+    {"id": "G3", "statement": "ユーザが求める出力はプレーンテキストのレポートである", "type": "intent", "importance": "minor"},
+    {"id": "G4", "statement": "data/users.json はUTF-8のJSON配列である", "type": "input", "importance": "critical"},
+    {"id": "G5", "statement": "欠損ageのレコードは集計から除外してよい", "type": "spec", "importance": "minor"}
+  ]
+}

@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.env
+.venv/
+# 生出力をコミットしたくない場合は次の行を有効化
+# phase0_rq0_pilot/outputs/

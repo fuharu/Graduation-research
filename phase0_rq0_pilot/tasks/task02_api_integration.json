@@ -1,0 +1,7 @@
+{
+  "id": "task02",
+  "title": "天気APIからの取得と整形",
+  "description": "Open-Meteo API（https://api.open-meteo.com/v1/forecast）を使って指定座標の今後3日間の最高気温・最低気温を取得し、日付ごとに1行のMarkdownテーブルとして weather.md に出力するPythonスクリプトを書いてください。座標はコマンドライン引数で受け取ります。",
+  "note": "goldはelicit実行前にharuが記入する。API契約系の前提（レスポンス形状・単位・タイムゾーン等）が出やすいタスク",
+  "gold": []
+}

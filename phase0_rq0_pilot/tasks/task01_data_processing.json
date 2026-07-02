@@ -1,0 +1,7 @@
+{
+  "id": "task01",
+  "title": "売上CSVの月次集計レポート",
+  "description": "sales.csv（列: date, store_id, product_id, quantity, unit_price）を読み込み、月ごと・店舗ごとの売上合計を集計して summary.csv に出力するPythonスクリプトを書いてください。売上は quantity × unit_price で計算します。",
+  "note": "goldはelicit実行前にharuが記入する。5〜10個、type={spec,api_contract,input,intent}、importance={critical,minor}",
+  "gold": []
+}
