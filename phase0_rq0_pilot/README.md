@@ -11,7 +11,7 @@
 4. **elicit実行** → `python scripts/run_elicit.py`
 5. **マッチングシート生成→人手判定** → `python scripts/score_coverage.py make-sheet` → 出力CSVの `matched_gold_id` 列を埋める
 6. **採点** → `python scripts/score_coverage.py score` → 再現率/適合率＋ブートストラップCI
-7. **分岐判定** → プロトコル§6の基準（70%/50%）で次の一手を決め、結果をvaultの`実験ログ/`に記録
+7. **分岐判定** → プロトコル§6の基準（70%/50%）で次の一手を決め、結果をログvault（`卒業論文ログ/卒業研究/実験ログ/`）に記録
 
 ## 環境変数（AWS Bedrock 推奨構成）
 
