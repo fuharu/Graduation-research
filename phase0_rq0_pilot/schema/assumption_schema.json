@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Assumption Ledger v1",
+  "description": "前提台帳のスキーマ。Phase 0(elicit出力)とPhase 1(実行時台帳)で共通。無効化規則は 設計判断/再開の無効化規則_v1.md を参照。",
+  "type": "object",
+  "properties": {
+    "task_id": { "type": "string" },
+    "created_at": { "type": "string" },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "statement", "type", "importance", "status"],
+        "properties": {
+          "id": { "type": "string", "description": "A1, A2, ..." },
+          "statement": { "type": "string", "description": "検証可能な1文" },
+          "type": { "enum": ["spec", "api_contract", "input", "intent", "env"] },
+          "type_detail": { "type": "string", "description": "taxonomy_draft.md の型ID (IN-3等)" },
+          "importance": { "enum": ["critical", "minor"] },
+          "status": { "enum": ["active", "violated", "revised", "waived", "retired"] },
+          "tier": { "enum": [1, 2], "description": "1=決定的チェック可, 2=LLM判定" },
+          "check": { "type": "string", "description": "Tier1の場合: 検証手続きの記述/参照" },
+          "source": { "enum": ["elicit", "human_seed", "revision"] },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+          "history": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "timestamp": { "type": "string" },
+                "event": { "enum": ["created", "violated", "revised", "waived"] },
+                "evidence": { "type": "string", "description": "違反時: 矛盾した観測" },
+                "new_statement": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "depends"],
+        "properties": {
+          "id": { "type": "string", "description": "S1, S2, ..." },
+          "description": { "type": "string" },
+          "path": { "type": "string", "description": "生成物の場所(ファイル等)" },
+          "depends": {
+            "type": "array", "items": { "type": "string" },
+            "description": "依拠する前提ID。生成時に記録(事後推定禁止)"
+          },
+          "derived_from": {
+            "type": "array", "items": { "type": "string" },
+            "description": "入力にした成果物ID(推移的無効化用)"
+          },
+          "status": { "enum": ["valid", "invalid", "regenerated"] },
+          "step": { "type": "integer", "description": "生成ステップ番号(手戻り計測用)" },
+          "loc": { "type": "integer", "description": "行数(手戻り計測用)" }
+        }
+      }
+    }
+  },
+  "required": ["task_id", "assumptions", "artifacts"]
+}
