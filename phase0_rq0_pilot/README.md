@@ -28,4 +28,21 @@ set AWS_REGION=us-east-1
 
 事前確認（初回のみ）：
 1. AWSコンソール → Bedrock → Model access で使用モデルを有効化（リージョンに注意）
-2. `aws s
+2. `aws sts get-caller-identity` で認証確認
+3. IAMに `bedrock:InvokeModel` 権限があること
+
+依存：`pip install boto3 requests`
+
+<details><summary>代替：OpenAI互換 / Gemini（Bedrockを使わない場合）</summary>
+
+```
+set OPENAI_API_KEY=...
+set OPENAI_BASE_URL=https://api.openai.com/v1   # 省略可
+set OPENAI_MODEL=gpt-4o-mini
+set GEMINI_API_KEY=...
+set GEMINI_MODEL=gemini-2.0-flash
+```
+</details>
+
+## 費用の目安
+3タスク×3プロンプト×2モデル×3反復＝54呼び出し、各1Kトークン程度 → 数十円〜数百円。
