@@ -1,0 +1,10 @@
+{
+    "permissions": {
+        "deny": [
+            "Edit(/phase0_rq0_pilot/tasks/*.json)",
+            "Edit(/phase0_rq0_pilot/prompts/**)",
+            "Edit(/phase0_rq0_pilot/プロトコル_RQ0_凍結版.md)",
+            "Edit(/phase0_rq0_pilot/outputs/**)"
+        ]
+    }
+}

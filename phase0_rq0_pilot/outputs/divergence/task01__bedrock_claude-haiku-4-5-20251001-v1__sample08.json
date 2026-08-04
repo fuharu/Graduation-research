@@ -1,0 +1,9 @@
+{
+  "task": "task01",
+  "model": "bedrock_claude-haiku-4-5-20251001-v1",
+  "sample": 8,
+  "temperature": 0.8,
+  "timestamp": "2026-08-04T11:16:57",
+  "raw": "\n```python\nimport pandas as pd\n\n# CSVファイルを読み込む\ndf = pd.read_csv('sales.csv')\n\n# dateをdatetime型に変換\ndf['date'] = pd.to_datetime(df['date'])\n\n# 売上を計算\ndf['sales'] = df['quantity'] * df['unit_price']\n\n# 年月を抽出\ndf['year_month'] = df['date'].dt.to_period('M')\n\n# 月ごと・店舗ごとの売上合計を集計\nsummary = df.groupby(['year_month', 'store_id'])['sales'].sum().reset_index()\n\n# year_monthを文字列に変換（CSV出力用）\nsummary['year_month'] = summary['year_month'].astype(str)\n\n# 列名を変更\nsummary.columns = ['month', 'store_id', 'total_sales']\n\n# summary.csvに出力\nsummary.to_csv('summary.csv', index=False)\n\nprint(\"集計が完了しました。summary.csvを出力しました。\")\nprint(summary.head())\n```",
+  "code": "import pandas as pd\n\n# CSVファイルを読み込む\ndf = pd.read_csv('sales.csv')\n\n# dateをdatetime型に変換\ndf['date'] = pd.to_datetime(df['date'])\n\n# 売上を計算\ndf['sales'] = df['quantity'] * df['unit_price']\n\n# 年月を抽出\ndf['year_month'] = df['date'].dt.to_period('M')\n\n# 月ごと・店舗ごとの売上合計を集計\nsummary = df.groupby(['year_month', 'store_id'])['sales'].sum().reset_index()\n\n# year_monthを文字列に変換（CSV出力用）\nsummary['year_month'] = summary['year_month'].astype(str)\n\n# 列名を変更\nsummary.columns = ['month', 'store_id', 'total_sales']\n\n# summary.csvに出力\nsummary.to_csv('summary.csv', index=False)\n\nprint(\"集計が完了しました。summary.csvを出力しました。\")\nprint(summary.head())"
+}

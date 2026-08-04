@@ -1,0 +1,9 @@
+{
+  "task": "task01",
+  "model": "bedrock_claude-haiku-4-5-20251001-v1",
+  "sample": 2,
+  "temperature": 0.8,
+  "timestamp": "2026-08-04T11:16:30",
+  "raw": "\n```python\nimport pandas as pd\n\n# Read the sales data\ndf = pd.read_csv('sales.csv')\n\n# Convert date to datetime\ndf['date'] = pd.to_datetime(df['date'])\n\n# Calculate sales amount\ndf['sales'] = df['quantity'] * df['unit_price']\n\n# Extract year-month for grouping\ndf['year_month'] = df['date'].dt.to_period('M')\n\n# Group by year_month and store_id, then sum the sales\nsummary = df.groupby(['year_month', 'store_id'])['sales'].sum().reset_index()\n\n# Rename columns for clarity\nsummary.columns = ['month', 'store_id', 'total_sales']\n\n# Sort by month and store_id\nsummary = summary.sort_values(['month', 'store_id'])\n\n# Save to CSV\nsummary.to_csv('summary.csv', index=False)\n\nprint(\"Summary saved to summary.csv\")\nprint(summary.head())\n```",
+  "code": "import pandas as pd\n\n# Read the sales data\ndf = pd.read_csv('sales.csv')\n\n# Convert date to datetime\ndf['date'] = pd.to_datetime(df['date'])\n\n# Calculate sales amount\ndf['sales'] = df['quantity'] * df['unit_price']\n\n# Extract year-month for grouping\ndf['year_month'] = df['date'].dt.to_period('M')\n\n# Group by year_month and store_id, then sum the sales\nsummary = df.groupby(['year_month', 'store_id'])['sales'].sum().reset_index()\n\n# Rename columns for clarity\nsummary.columns = ['month', 'store_id', 'total_sales']\n\n# Sort by month and store_id\nsummary = summary.sort_values(['month', 'store_id'])\n\n# Save to CSV\nsummary.to_csv('summary.csv', index=False)\n\nprint(\"Summary saved to summary.csv\")\nprint(summary.head())"
+}
