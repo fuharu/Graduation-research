@@ -105,10 +105,13 @@ def cmd_digest(args):
         with open(sheet, "w", newline="", encoding="utf-8-sig") as f:
             w = csv.writer(f)
             w.writerow(["task", "divergence_id", "description",
-                        "assumption_statement", "type_id", "importance",
+                        "assumption_statement", "alternatives",
+                        "type_id", "importance", "monitorable",
                         "n_samples_affected", "note"])
             w.writerow(["task01", "D1", "（例）欠損ageの扱いがスキップ/エラー/0埋めに分岐",
-                        "欠損ageのレコードは集計から除外してよい", "IN-5", "minor", "5/8", ""])
+                        "欠損ageのレコードは集計から除外してよい",
+                        "全レコードにageが存在する前提で処理する / 欠損を0として扱う",
+                        "IN-5", "minor", "yes", "5/8", "（例）判定理由をここに書く"])
         print(f"{sheet} を生成（記入例つき）。taxonomy_draft.md の型IDで分類する。")
 
 
