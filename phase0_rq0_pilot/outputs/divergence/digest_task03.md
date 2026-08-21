@@ -1559,7 +1559,6 @@ if __name__ == '__main__':
 
 ## bedrock_claude-haiku-4-5-20251001-v1 / sample 12
 ```python
-```python
 #!/usr/bin/env python3
 import anthropic
 import json
@@ -3094,7 +3093,6 @@ if __name__ == "__main__":
 ```
 
 ## bedrock_claude-haiku-4-5-20251001-v1 / sample 22
-```python
 ```python
 #!/usr/bin/env python3
 import anthropic

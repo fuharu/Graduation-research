@@ -29,9 +29,27 @@ MOCK_SAMPLES = [
 ]
 
 
+FENCE_OPEN_RE = re.compile(r"```[^\n]*\n")
+
+
 def extract_code(text: str):
-    m = re.search(r"```(?:python)?\s*(.*?)```", text, re.S)
-    return (m.group(1) if m else text).strip()
+    """応答テキストからコードブロックを抽出する。
+
+    - 開始フェンス（```python 等）が見つかれば、その直後から抽出を始める。
+    - 閉じフェンスは末尾から探す（rfind）。コード中に ``` が現れても
+      そこで途中で切れないよう、最後に現れる ``` を閉じフェンスとみなす。
+    - 閉じフェンスが見つからない場合（応答が閉じフェンス前で打ち切られた場合）は、
+      開始フェンス行を除いた残り全体をコードとして返す。
+    - 開始フェンス自体が無ければ、テキストをそのまま返す（フェンスなし応答との互換）。
+    """
+    m = FENCE_OPEN_RE.search(text)
+    if not m:
+        return text.strip()
+    start = m.end()
+    close_idx = text.rfind("```")
+    if close_idx > start:
+        return text[start:close_idx].strip()
+    return text[start:].strip()
 
 
 def get_providers():
